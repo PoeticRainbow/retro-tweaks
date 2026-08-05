@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "io.github.poeticrainbow.retrotweaks.neoforge.mixin.client.tweak",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "beta_main_menu.BrandingControlMixinNeoForge",
+    "beta_main_menu.ClientHooksMixinNeoForge",
+    "beta_main_menu.TitleScreenMixinNeoForge",
+    "hide_action_bar.GuiMixinNeoforge",
+    "remove_hunger.GuiMixinNeoforge",
+    "remove_xp_bar.GuiMixinNeoforge"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

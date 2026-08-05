@@ -1,0 +1,23 @@
+{
+  "required": false,
+  "package": "io.github.poeticrainbow.retrotweaks.mixin.common.tweak",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "dark_water_lighting.BlockStateBaseMixin",
+    "instant_consumption.ConsumableMixin",
+    "instant_consumption.FoodPropertiesMixin",
+    "old_fence_connections.FenceBlockMixin",
+    "old_hitbox_shapes.BlockStateBaseMixin",
+    "old_hitbox_shapes.ClipContextMixin",
+    "remove_hunger.FoodDataMixin",
+    "remove_hunger.PlayerMixin",
+    "remove_hunger.ServerPlayerMixin",
+    "sprinting_style.FoodDataMixin",
+    "sprinting_style.LivingEntityMixin",
+    "unstable_tnt.TntBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

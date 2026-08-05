@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "io.github.poeticrainbow.retrotweaks.fabric.mixin.client.tweak",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "beta_main_menu.TitleScreenMixinFabric",
+    "remove_xp_bar.GuiMixinFabric",
+    "remove_hunger.GuiMixinFabric"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "values": [
+    {"id": "#retrotweaks:shapes/collision/full", "required": false},
+    {"id": "#retrotweaks:shapes/collision/fence", "required": false},
+    {"id": "#retrotweaks:shapes/collision/fence_gate", "required": false},
+    {"id": "#minecraft:stairs", "required": false}
+  ]
+}

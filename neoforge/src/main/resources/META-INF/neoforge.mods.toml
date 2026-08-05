@@ -4,30 +4,30 @@ loaderVersion = "[2,)"
 license = "GNU GPL 3.0"
 
 [[mods]]
-modId = "goldentweaks"
+modId = "retrotweaks"
 version = "${version}"
-displayName = "GoldenTweaks"
+displayName = "RetroTweaks"
 authors = ["PoeticRainbow", "GameMasterPDX"]
 description = '''
 Implements visual tweaks to send your Minecraft back in time!
 '''
-logoFile = "assets/goldentweaks/icon.png"
+logoFile = "assets/retrotweaks/icon.png"
 
-[[dependencies.goldentweaks]]
+[[dependencies.retrotweaks]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.goldentweaks]]
+[[dependencies.retrotweaks]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21.11,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.goldentweaks]]
+[[dependencies.retrotweaks]]
 modId = "architectury"
 type = "required"
 versionRange = "[19.0.1,)"
@@ -35,7 +35,16 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[mixins]]
-config = "goldentweaks.mixins.json"
+config = "retrotweaks-required.mixins.json"
 
 [[mixins]]
-config = "goldentweaks-neoforge.mixins.json"
+config = "retrotweaks-tweak.mixins.json"
+
+[[mixins]]
+config = "retrotweaks-client-required.mixins.json"
+
+[[mixins]]
+config = "retrotweaks-client-tweak.mixins.json"
+
+[[mixins]]
+config = "retrotweaks-neoforge-client-tweak.mixins.json"

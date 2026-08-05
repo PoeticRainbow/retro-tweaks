@@ -7,7 +7,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'goldentweaks'
+rootProject.name = 'retrotweaks'
 
 include 'common'
 include 'fabric'

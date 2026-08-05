@@ -15,5 +15,5 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/goldentweaks.accesswidener")
+    accessWidenerPath = file("src/main/resources/retrotweaks.accesswidener")
 }
