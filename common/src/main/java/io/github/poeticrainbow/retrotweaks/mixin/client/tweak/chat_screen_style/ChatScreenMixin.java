@@ -22,20 +22,25 @@ public abstract class ChatScreenMixin extends Screen {
 
     @Shadow protected EditBox input;
     @Shadow CommandSuggestions commandSuggestions;
+    @Shadow private ChatComponent.DisplayMode displayMode;
+
+    @Shadow
+    protected abstract boolean insertionClickMode();
+
     @Unique public int retrotweaks$updateCounter;
 
     @WrapMethod(method = "extractRenderState")
-    public void retrotweaks$render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float a, Operation<Void> original) {
+    public void retrotweaks$render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, Operation<Void> original) {
         if (Tweaks.CHAT_SCREEN_STYLE.get().isEnabled()) {
-            guiGraphics.fill(2, this.height - 14, this.width - 2, this.height - 2, this.minecraft.options.getBackgroundColor(Integer.MIN_VALUE));
-            this.minecraft.gui.getChat().extractRenderState(guiGraphics, this.font, this.minecraft.gui.getGuiTicks(), mouseX, mouseY, ChatComponent.DisplayMode.BACKGROUND, false);
-            guiGraphics.text(this.font, "> " + this.input.getValue() + (this.retrotweaks$updateCounter / 6 % 2 == 0 ? "_" : ""), 4, this.height - 12, 0xFFE0E0E0);
+            graphics.fill(2, this.height - 14, this.width - 2, this.height - 2, this.minecraft.options.getBackgroundColor(Integer.MIN_VALUE));
+            this.minecraft.gui.getChat().extractRenderState(graphics, this.font, this.minecraft.gui.getGuiTicks(), mouseX, mouseY, displayMode, insertionClickMode());
+            graphics.text(this.font, "> " + this.input.getValue() + (this.retrotweaks$updateCounter / 6 % 2 == 0 ? "_" : ""), 4, this.height - 12, 0xFFE0E0E0);
 
             if (Tweaks.CHAT_SCREEN_STYLE.get().showSuggestions()) {
-                commandSuggestions.extractRenderState(guiGraphics, mouseX, mouseY);
+                commandSuggestions.extractRenderState(graphics, mouseX, mouseY);
             }
         } else {
-            original.call(guiGraphics, mouseX, mouseY, a);
+            original.call(graphics, mouseX, mouseY, a);
         }
     }
 
