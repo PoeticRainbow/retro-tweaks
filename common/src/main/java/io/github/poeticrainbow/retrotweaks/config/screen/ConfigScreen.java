@@ -4,6 +4,7 @@ import io.github.poeticrainbow.retrotweaks.ErrorCollector;
 import io.github.poeticrainbow.retrotweaks.config.Config;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -13,30 +14,34 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class ConfigScreen extends Screen {
-    private List<String> errors;
-
-    public static final int sidebarWidth = 240;
-
+    public static final Component TITLE = Component.translatable("gui.retrotweaks.config");
     private final Screen parent;
 
+    private List<String> errors;
+
     public ConfigScreen(Screen parent) {
-        super(Component.translatable("gui.retrotweaks.config"));
+        super(TITLE);
         this.parent = parent;
     }
 
     @Override
     protected void init() {
-        var padding = 20;
+        var borderHeight = 24;
+        var buttonHeight = 20;
 
-        TweakButtonList list = new TweakButtonList(minecraft, sidebarWidth, height - padding);
-        errors = ErrorCollector.checkForErrors();
+        var title = new StringWidget(width / 2 - font.width(TITLE) / 2, borderHeight / 2, font.width(TITLE), 0, TITLE, font);
+        addRenderableOnly(title);
 
+        var list = new TweakButtonList(minecraft, width, height - borderHeight * 2, borderHeight);
         addRenderableWidget(list);
+
         addRenderableWidget(
-            new Button.Builder(CommonComponents.GUI_DONE, button -> this.onClose())
-                .bounds((sidebarWidth - 220) / 2, height - padding, 220, padding)
+            new Button.Builder(CommonComponents.GUI_DONE, _ -> this.onClose())
+                .bounds((width - 220) / 2, height - buttonHeight - ((borderHeight - buttonHeight) / 2), 220, buttonHeight)
                 .build()
         );
+
+        errors = ErrorCollector.checkForErrors();
     }
 
     @Override
@@ -49,20 +54,10 @@ public class ConfigScreen extends Screen {
         }
     }
 
-    @Override
-    public void extractBackground(@NotNull GuiGraphicsExtractor guiGraphics, int i, int j, float f) {
-        if (minecraft.level == null) {
-            super.extractBackground(guiGraphics, i, j, f);
-        } else {
-            // no background when in game to show the changes easier
-            this.minecraft.gui.extractDeferredSubtitles();
-        }
-    }
-
-    public void extractErrors(@NotNull GuiGraphicsExtractor graphics, int i, int j, float f) {
+    public void extractErrors(@NotNull GuiGraphicsExtractor graphics) {
         if (!errors.isEmpty()) {
             for (String error : errors) {
-                graphics.textWithWordWrap(getFont(), FormattedText.of(error), sidebarWidth, 0, width - sidebarWidth, 0xFFFF0000);
+                graphics.textWithWordWrap(getFont(), FormattedText.of(error), 0, 0, width, 0xFFFF0000);
             }
         }
     }
@@ -70,6 +65,6 @@ public class ConfigScreen extends Screen {
     @Override
     public void extractRenderState(@NotNull GuiGraphicsExtractor graphics, int i, int j, float f) {
         super.extractRenderState(graphics, i, j, f);
-        extractErrors(graphics, i, j, f);
+        extractErrors(graphics);
     }
 }

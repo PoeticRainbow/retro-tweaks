@@ -7,8 +7,8 @@ import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import org.jetbrains.annotations.NotNull;
 
 public class TweakButtonList extends ContainerObjectSelectionList<@NotNull TweakButtonEntry> {
-    public TweakButtonList(Minecraft minecraft, int width, int height) {
-        super(minecraft, width, height, 0, 0);
+    public TweakButtonList(Minecraft minecraft, int width, int height, int y) {
+        super(minecraft, width, height, y, 0);
 
         Tweaks.CATEGORIES.forEach((category, tweaks) -> {
             for (Tweak<?> tweak : tweaks) {
