@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class ItemEntityRendererMixin {
     // todo figure out how to set the normals to (0, 1, 0) for top-face lighting
     @Redirect(
-        method = "submit(Lnet/minecraft/client/renderer/entity/state/ItemEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/CameraRenderState;)V",
+        method = "submit(Lnet/minecraft/client/renderer/entity/state/ItemEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;getSpin(FF)F")
     )
-    private float retrotweaks$flat_items_billboard_yaw(float f, float g, @Local(argsOnly = true) ItemEntityRenderState state) {
+    private float retrotweaks$flat_items_billboard_yaw(float f, float g, @Local(argsOnly = true, name = "state") ItemEntityRenderState state) {
         try {
             // ignore items that use block lighting as they are usually blocks! duhh
             if (Tweaks.FLAT_ITEMS.get() && !state.item.usesBlockLight()) {

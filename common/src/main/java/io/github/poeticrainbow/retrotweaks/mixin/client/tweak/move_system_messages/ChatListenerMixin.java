@@ -20,7 +20,7 @@ public abstract class ChatListenerMixin {
     @WrapMethod(method = "handleSystemMessage")
     public void retrotweaks$move_system_messages_to_chat(Component component, boolean bl, Operation<Void> original) {
         if (Tweaks.MOVE_SYSTEM_MESSAGES.get()){
-            this.minecraft.gui.getChat().addMessage(component);
+            this.minecraft.gui.getChat().addClientSystemMessage(component);
             this.logSystemMessage(component, Instant.now());
             this.minecraft.getNarrator().saySystemChatQueued(component);
         } else {

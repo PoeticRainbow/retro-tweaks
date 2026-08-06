@@ -13,7 +13,7 @@ public class GuiMixinFabric {
     private int lastHealth;
 
     @Redirect(
-            method = "renderPlayerHealth",
+            method = "extractPlayerHealth",
             at = @At(
                     value = "FIELD",
                     target = "Lnet/minecraft/client/gui/Gui;lastHealth:I",

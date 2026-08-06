@@ -19,10 +19,10 @@ public class RetroTweaksClientCommand {
             .then(literal("tweaks").executes(context -> {
                 context.getSource()
                        .arch$getPlayer()
-                       .displayClientMessage(CommandHelper.prettyTweakValueList(Env.CLIENT), false);
+                       .sendSystemMessage(CommandHelper.prettyTweakValueList(Env.CLIENT));
                 context.getSource()
                        .arch$getPlayer()
-                       .displayClientMessage(CommandHelper.prettyTweakValueList(Env.SERVER), false);
+                       .sendSystemMessage(CommandHelper.prettyTweakValueList(Env.SERVER));
                 return 1;
             }));
     }

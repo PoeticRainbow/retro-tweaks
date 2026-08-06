@@ -6,7 +6,7 @@ import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.debug.DebugScreenEntries;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
@@ -23,15 +23,15 @@ public abstract class GuiMixin{
     @Shadow protected abstract boolean canRenderCrosshairForSpectator(@Nullable HitResult arg);
     @Shadow @Final private Minecraft minecraft;
 
-    @WrapMethod(method = "renderCrosshair")
-    private void retrotweaks$render_crosshair(GuiGraphics arg, DeltaTracker arg2, Operation<Void> original) {
+    @WrapMethod(method = "extractCrosshair")
+    private void retrotweaks$render_crosshair(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker, Operation<Void> original) {
         if (Tweaks.OLD_CROSSHAIR.get()) {
             if ((this.minecraft.gameMode.getPlayerMode() != GameType.SPECTATOR || this.canRenderCrosshairForSpectator(this.minecraft.hitResult)) && !this.minecraft.debugEntries.isCurrentlyEnabled(DebugScreenEntries.THREE_DIMENSIONAL_CROSSHAIR)) {
-                arg.nextStratum();
-                arg.blitSprite(RenderPipelines.CROSSHAIR, CROSSHAIR_SPRITE, arg.guiWidth() / 2 - 7, arg.guiHeight() / 2 - 7, 15, 15);
+                graphics.nextStratum();
+                graphics.blitSprite(RenderPipelines.CROSSHAIR, CROSSHAIR_SPRITE, graphics.guiWidth() / 2 - 7, graphics.guiHeight() / 2 - 7, 15, 15);
             }
         } else {
-            original.call(arg, arg2);
+            original.call(graphics, deltaTracker);
         }
     }
 }

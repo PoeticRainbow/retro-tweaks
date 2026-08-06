@@ -3,7 +3,7 @@ package io.github.poeticrainbow.retrotweaks.mixin.client.tweak.beta_main_menu;
 import io.github.poeticrainbow.retrotweaks.mixin.client.required.ScreenAccessor;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Renderable;
@@ -27,8 +27,8 @@ public abstract class TitleScreenMixin extends Screen {
 
     @Shadow private boolean fading;
 
-    @Inject(method = "render", at = @At("HEAD"))
-    private void retrotweaks$skip_fade_in(GuiGraphics instance, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
+    @Inject(method = "extractRenderState", at = @At("HEAD"))
+    private void retrotweaks$skip_fade_in(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, CallbackInfo ci) {
         if (Tweaks.BETA_MAIN_MENU.get()) {
             this.fading = false;
         }

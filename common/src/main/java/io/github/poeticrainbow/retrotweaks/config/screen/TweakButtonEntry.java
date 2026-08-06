@@ -8,7 +8,7 @@ import io.github.poeticrainbow.retrotweaks.tweak.types.Tweak;
 import io.github.poeticrainbow.retrotweaks.util.ColorHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.Tooltip;
@@ -97,13 +97,13 @@ public class TweakButtonEntry extends ContainerObjectSelectionList.Entry<@NotNul
     }
 
     @Override
-    public void renderContent(@NotNull GuiGraphics graphics, int i, int j, boolean bl, float f) {
+    public void extractContent(@NotNull GuiGraphicsExtractor graphics, int i, int j, boolean bl, float f) {
         // i and j are mouse position
         var textRenderer = graphics.textRenderer();
         var font = Minecraft.getInstance().font;
         textRenderer.accept(getX() + 2, getY() + (getHeight() - font.lineHeight) / 2, label);
         child.setPosition(getX() + getWidth() - BUTTON_WIDTH, getY() + 1);
         child.setWidth(BUTTON_WIDTH);
-        child.render(graphics, i, j, f);
+        child.extractRenderState(graphics, i, j, f);
     }
 }

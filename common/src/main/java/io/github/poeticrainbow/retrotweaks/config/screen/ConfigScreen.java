@@ -2,7 +2,7 @@ package io.github.poeticrainbow.retrotweaks.config.screen;
 
 import io.github.poeticrainbow.retrotweaks.ErrorCollector;
 import io.github.poeticrainbow.retrotweaks.config.Config;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
@@ -49,26 +49,26 @@ public class ConfigScreen extends Screen {
     }
 
     @Override
-    public void renderBackground(@NotNull GuiGraphics guiGraphics, int i, int j, float f) {
+    public void extractBackground(@NotNull GuiGraphicsExtractor guiGraphics, int i, int j, float f) {
         if (minecraft.level == null) {
-            super.renderBackground(guiGraphics, i, j, f);
+            super.extractBackground(guiGraphics, i, j, f);
         } else {
             // no background when in game to show the changes easier
-            this.minecraft.gui.renderDeferredSubtitles();
+            this.minecraft.gui.extractDeferredSubtitles();
         }
     }
 
-    public void renderErrors(@NotNull GuiGraphics graphics, int i, int j, float f) {
+    public void extractErrors(@NotNull GuiGraphicsExtractor graphics, int i, int j, float f) {
         if (!errors.isEmpty()) {
             for (String error : errors) {
-                graphics.drawWordWrap(getFont(), FormattedText.of(error), sidebarWidth, 0, width - sidebarWidth, 0xFFFF0000);
+                graphics.textWithWordWrap(getFont(), FormattedText.of(error), sidebarWidth, 0, width - sidebarWidth, 0xFFFF0000);
             }
         }
     }
 
     @Override
-    public void render(@NotNull GuiGraphics graphics, int i, int j, float f) {
-        super.render(graphics, i, j, f);
-        renderErrors(graphics, i, j, f);
+    public void extractRenderState(@NotNull GuiGraphicsExtractor graphics, int i, int j, float f) {
+        super.extractRenderState(graphics, i, j, f);
+        extractErrors(graphics, i, j, f);
     }
 }

@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
@@ -21,29 +21,26 @@ public abstract class ScreenMixin {
     public int height;
 
     @Shadow
-    protected abstract void renderMenuBackground(GuiGraphics guiGraphics);
-
-    @Shadow
     @Final
     protected Minecraft minecraft;
     @Unique
     private static final Identifier DIRT_TEXTURE = Identifier.withDefaultNamespace("textures/block/dirt.png");
 
-    @WrapMethod(method = "renderPanorama")
-    private void retrotweaks$render_dirt_for_panorama(GuiGraphics guiGraphics, float f, Operation<Void> original) {
+    @WrapMethod(method = "extractPanorama")
+    private void retrotweaks$render_dirt_for_panorama(GuiGraphicsExtractor guiGraphics, float a, Operation<Void> original) {
         if (Tweaks.DIRT_GUI_BACKGROUND.get()) {
             guiGraphics.blit(RenderPipelines.GUI_TEXTURED, DIRT_TEXTURE, 0, 0, 0.0F, 0.0F, width, height, 32, 32, 0xFF404040);
         } else {
-            original.call(guiGraphics, f);
+            original.call(guiGraphics, a);
         }
     }
 
-    @WrapMethod(method = "renderMenuBackground(Lnet/minecraft/client/gui/GuiGraphics;IIII)V")
-    private void retrotweaks$remove_menu_background(GuiGraphics guiGraphics, int i, int j, int k, int l, Operation<Void> original) {
+    @WrapMethod(method = "extractMenuBackground(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIII)V")
+    private void retrotweaks$remove_menu_background(GuiGraphicsExtractor graphics, int x, int y, int width, int height, Operation<Void> original) {
         if (Tweaks.DIRT_GUI_BACKGROUND.get() && this.minecraft.level == null) {
 
         } else {
-            original.call(guiGraphics, i, j, k, l);
+            original.call(graphics, x, y, width, height);
         }
     }
 }

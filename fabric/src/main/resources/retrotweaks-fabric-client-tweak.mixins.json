@@ -5,8 +5,8 @@
   "minVersion": "0.8",
   "client": [
     "beta_main_menu.TitleScreenMixinFabric",
-    "remove_xp_bar.GuiMixinFabric",
-    "remove_hunger.GuiMixinFabric"
+    "remove_hunger.GuiMixinFabric",
+    "remove_xp_bar.GuiMixinFabric"
   ],
   "injectors": {
     "defaultRequire": 1

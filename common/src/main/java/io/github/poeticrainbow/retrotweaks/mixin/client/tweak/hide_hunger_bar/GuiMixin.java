@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.poeticrainbow.retrotweaks.RetroTweaks;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.FluidTags;
@@ -25,12 +25,12 @@ public abstract class GuiMixin {
     @Final @Shadow private static Identifier AIR_SPRITE;
     @Final @Shadow private static Identifier AIR_POPPING_SPRITE;
 
-    @WrapMethod(method = "renderArmor")
-    private static void retrotweaks$render_armor(GuiGraphics guiGraphics, Player player, int i, int j, int k, int l, Operation<Void> original) {
+    @WrapMethod(method = "extractArmor")
+    private static void retrotweaks$render_armor(GuiGraphicsExtractor graphics, Player player, int yLineBase, int numHealthRows, int healthRowHeight, int xLeft, Operation<Void> original) {
         if (Tweaks.HIDE_HUNGER_BAR.get()) {
             int m = player.getArmorValue();
-            int var6 = guiGraphics.guiWidth();
-            int var7 = guiGraphics.guiHeight();
+            int var6 = graphics.guiWidth();
+            int var7 = graphics.guiHeight();
             int yOffset = var7 - 32;
             if (!Tweaks.HIDE_XP_BAR.get()) {
                 yOffset = yOffset - 7;
@@ -40,39 +40,39 @@ public abstract class GuiMixin {
                     int xOffset = var6 / 2 + 91 - o * 8 - 9;
                     if (o * 2 + 1 < m) {
 
-                        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ARMOR_FULL_SPRITE, xOffset, yOffset, 9, 9);
+                        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, ARMOR_FULL_SPRITE, xOffset, yOffset, 9, 9);
                     }
 
                     if (o * 2 + 1 == m) {
-                        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ARMOR_HALF_SPRITE, xOffset, yOffset, 9, 9);
+                        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, ARMOR_HALF_SPRITE, xOffset, yOffset, 9, 9);
                     }
 
                     if (o * 2 + 1 > m) {
-                        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ARMOR_EMPTY_SPRITE, xOffset, yOffset, 9, 9);
+                        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, ARMOR_EMPTY_SPRITE, xOffset, yOffset, 9, 9);
                     }
                 }
             }
         } else {
-            original.call(guiGraphics, player, i, j, k, l);
+            original.call(graphics, player, yLineBase, numHealthRows, healthRowHeight, xLeft);
         }
     }
 
-    @WrapMethod(method = "renderFood")
-    private void retrotweaks$render_food(GuiGraphics guiGraphics, Player player, int i, int j, Operation<Void> original) {
+    @WrapMethod(method = "extractFood")
+    private void retrotweaks$render_food(GuiGraphicsExtractor graphics, Player player, int yLineBase, int xRight, Operation<Void> original) {
         if (!Tweaks.HIDE_HUNGER_BAR.get()) {
-            original.call(guiGraphics, player, i, j);
+            original.call(graphics, player, yLineBase, xRight);
         }
         // do nothing
     }
 
-    @WrapMethod(method = "renderAirBubbles")
-    private void retrotweaks$render_air_bubble(GuiGraphics guiGraphics, Player player, int i, int j, int k, Operation<Void> original) {
+    @WrapMethod(method = "extractAirBubbles")
+    private void retrotweaks$render_air_bubble(GuiGraphicsExtractor graphics, Player player, int vehicleHearts, int yLineAir, int xRight, Operation<Void> original) {
         if (Tweaks.HIDE_HUNGER_BAR.get()) {
             int l = player.getMaxAirSupply();
             int m = Math.clamp(player.getAirSupply(), 0, l);
             boolean bl = player.isEyeInFluid(FluidTags.WATER);
-            int var6 = guiGraphics.guiWidth();
-            int var7 = guiGraphics.guiHeight();
+            int var6 = graphics.guiWidth();
+            int var7 = graphics.guiHeight();
 
             if (bl || m < l) {
                 int n = (int) Math.ceil((double) (m - 2) * 10.0D / (double) l);
@@ -91,14 +91,14 @@ public abstract class GuiMixin {
 
                 for (int q = 0; q < (n + o); ++q) {
                     if (q < n) {
-                        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, AIR_SPRITE, var6 / 2 - 91 + q * 8, yOffset, 9, 9);
+                        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, AIR_SPRITE, var6 / 2 - 91 + q * 8, yOffset, 9, 9);
                     } else {
-                        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, AIR_POPPING_SPRITE, var6 / 2 - 91 + q * 8, yOffset, 9, 9);
+                        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, AIR_POPPING_SPRITE, var6 / 2 - 91 + q * 8, yOffset, 9, 9);
                     }
                 }
             }
         } else {
-            original.call(guiGraphics, player, i, j, k);
+            original.call(graphics, player, vehicleHearts, yLineAir, xRight);
         }
     }
 }

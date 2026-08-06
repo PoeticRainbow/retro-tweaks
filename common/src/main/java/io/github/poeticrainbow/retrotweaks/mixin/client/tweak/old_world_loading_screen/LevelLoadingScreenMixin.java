@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import io.github.poeticrainbow.retrotweaks.util.DimensionTracker;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.LevelLoadTracker;
@@ -29,19 +29,19 @@ public class LevelLoadingScreenMixin extends Screen {
     @Unique private Component retrotweaks$currentDimension;
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void retrotweaks$set_previous_and_current_dimensions(LevelLoadTracker levelLoadTracker, LevelLoadingScreen.Reason reason, CallbackInfo ci) {
+    private void retrotweaks$set_previous_and_current_dimensions(LevelLoadTracker loadTracker, LevelLoadingScreen.Reason reason, CallbackInfo ci) {
         retrotweaks$previousDimension = DimensionTracker.previousDimensionTranslation();
         retrotweaks$currentDimension = DimensionTracker.currentDimensionTranslation();
     }
 
     @Unique
-    void retrotweaks$draw_progress_bar(GuiGraphics guiGraphics, int xStart, int yStart, int length, int height, float progress) {
+    void retrotweaks$draw_progress_bar(GuiGraphicsExtractor guiGraphics, int xStart, int yStart, int length, int height, float progress) {
         guiGraphics.fill(xStart, yStart, xStart + length, yStart + height, 0xFF808080);
         guiGraphics.fill(xStart, yStart, xStart + Math.round(progress * length), yStart + height, 0xFF80FF80);
     }
 
-    @WrapMethod(method = "render")
-    public void retrotweaks$render(GuiGraphics guiGraphics, int m, int n, float f, Operation<Void> original) {
+    @WrapMethod(method = "extractRenderState")
+    public void retrotweaks$render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, Operation<Void> original) {
         if (Tweaks.OLD_WORLD_LOADING_SCREEN.get()) {
             int width = this.width / 2;
             int height = this.height / 2;
@@ -64,26 +64,26 @@ public class LevelLoadingScreenMixin extends Screen {
                 }
             }
 
-            guiGraphics.drawCenteredString(this.font, stage, width, l - 4 + 8, -1);
-            guiGraphics.drawCenteredString(this.font, header, width, l - 4 - 16, -1);
+            graphics.centeredText(this.font, stage, width, l - 4 + 8, -1);
+            graphics.centeredText(this.font, header, width, l - 4 - 16, -1);
             if (loadTracker.hasProgress()) {
-                this.retrotweaks$draw_progress_bar(guiGraphics, xStart, yStart, barLength, barHeight, smoothedProgress);
+                this.retrotweaks$draw_progress_bar(graphics, xStart, yStart, barLength, barHeight, smoothedProgress);
             }
         } else {
-            original.call(guiGraphics, m, n, f);
+            original.call(graphics, mouseX, mouseY, a);
         }
     }
 
-    @WrapMethod(method = "renderBackground")
-    private void retrotweaks$render_background(GuiGraphics guiGraphics, int i, int j, float f, Operation<Void> original) {
+    @WrapMethod(method = "extractBackground")
+    private void retrotweaks$render_background(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, Operation<Void> original) {
         if (Tweaks.OLD_WORLD_LOADING_SCREEN.get()) {
-            this.renderPanorama(guiGraphics, f);
-            this.renderBlurredBackground(guiGraphics);
+            this.extractPanorama(graphics, a);
+            this.extractBlurredBackground(graphics);
             if (!Tweaks.DIRT_GUI_BACKGROUND.get()) {
-                this.renderMenuBackground(guiGraphics);
+                this.extractMenuBackground(graphics);
             }
         } else {
-            original.call(guiGraphics, i, j, f);
+            original.call(graphics, mouseX, mouseY, a);
         }
     }
 }

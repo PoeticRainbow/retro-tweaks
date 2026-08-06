@@ -17,7 +17,7 @@
     "dirt_gui_background.LevelLoadingScreenMixin",
     "dirt_gui_background.ScreenMixin",
     "flat_items.ItemEntityRendererMixin",
-    "full_face_shading.AmbientOcclusionRenderStorageMixin",
+    "full_face_shading.BlockModelLighterMixin",
     "hide_action_bar.GuiMixin",
     "hide_extra_tooltip_info.CreativeModeInventoryScreenMixin",
     "hide_extra_tooltip_info.ItemStackMixin",

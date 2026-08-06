@@ -1,29 +1,19 @@
 package io.github.poeticrainbow.retrotweaks.neoforge.mixin.client.tweak.remove_hunger;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(Gui.class)
 public class GuiMixinNeoforge {
-    @Shadow
-    private int lastHealth;
-
-    @Redirect(
-            method = "renderHealthLevel",
-            at = @At(
-                    value = "FIELD",
-                    target = "Lnet/minecraft/client/gui/Gui;lastHealth:I",
-                    ordinal = 1
-            )
-    )
-    private int retrotweaks$prevent_blinking(Gui instance) {
+    @WrapMethod(method = "extractHeart")
+    private void retrotweaks$prevent_blinking(GuiGraphicsExtractor graphics, Gui.HeartType type, int xo, int yo, boolean isHardcore, boolean blinks, boolean half, Operation<Void> original) {
         if (Tweaks.REMOVE_HUNGER.get()) {
-            return Integer.MAX_VALUE;
+            original.call(graphics, type, xo, yo, isHardcore, false, half);
         }
-        return this.lastHealth;
+        original.call(graphics, type, xo, yo, isHardcore, blinks, half);
     }
 }
