@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(AbstractSliderButton.class)
 public class AbstractSliderButtonMixin extends AbstractWidgetMixin {
     @ModifyArg(
-            method = "renderWidget",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/AbstractSliderButton;renderScrollingStringOverContents(Lnet/minecraft/client/gui/ActiveTextCollector;Lnet/minecraft/network/chat/Component;I)V"),
+            method = "extractWidgetRenderState",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/AbstractSliderButton;extractScrollingStringOverContents(Lnet/minecraft/client/gui/ActiveTextCollector;Lnet/minecraft/network/chat/Component;I)V"),
             index = 1
     )
     private Component retrotweaks$modify_text_colors(Component text) {
