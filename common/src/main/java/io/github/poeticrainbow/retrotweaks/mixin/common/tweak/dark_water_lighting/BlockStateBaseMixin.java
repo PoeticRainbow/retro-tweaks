@@ -14,7 +14,7 @@ public abstract class BlockStateBaseMixin {
     @Shadow
     protected abstract BlockState asState();
 
-    @ModifyReturnValue(method = "getLightBlock", at = @At("RETURN"))
+    @ModifyReturnValue(method = "getLightDampening", at = @At("RETURN"))
     private int retrotweaks$modify_light_blocking(int original) {
         try {
             if (Tweaks.DARK_WATER_LIGHTING.get() && this.asState().getFluidState().is(FluidTags.WATER)) {
