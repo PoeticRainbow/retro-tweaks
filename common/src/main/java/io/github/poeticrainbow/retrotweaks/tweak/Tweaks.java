@@ -34,7 +34,7 @@ public class Tweaks {
     public static final Tweak<Boolean> HIDE_XP_BAR = register(new BooleanTweak("hide_xp_bar", Env.CLIENT, true, false));
     public static final Tweak<Boolean> OLD_DEATH_SCREEN = register(new BooleanTweak("old_death_screen", Env.CLIENT, true, false));
     public static final Tweak<Boolean> OLD_CROSSHAIR = register(new BooleanTweak("old_crosshair", Env.CLIENT, true, false));
-    public static final Tweak<Boolean> MOVE_OVERLAY_MESSAGES = register(new BooleanTweak("move_system_messages", Env.CLIENT, true, false));
+    public static final Tweak<Boolean> MOVE_OVERLAY_MESSAGES = register(new BooleanTweak("move_overlay_messages", Env.CLIENT, true, false));
     public static final Tweak<Chat> CHAT_SCREEN_STYLE = register(new EnumTweak<>("chat_screen_style", Env.CLIENT, Chat.BETA, Chat.MODERN, Chat.VALUES));
     public static final Tweak<Boolean> TOP_LEFT_VERSION_TEXT = register(new BooleanTweak("top_left_version_text", Env.CLIENT, false, false));
     public static final Tweak<Boolean> HIDE_ACTION_BAR = register(new BooleanTweak("hide_action_bar", Env.CLIENT, true, false));
