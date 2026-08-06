@@ -27,6 +27,7 @@ public class ConfigScreen extends Screen {
     @Override
     protected void init() {
         var padding = 20;
+
         TweakButtonList list = new TweakButtonList(minecraft, sidebarWidth, height - padding);
         errors = ErrorCollector.checkForErrors();
 
