@@ -2,7 +2,7 @@
 Tweak your Minecraft and send it back in time! **Retro Tweaks** is a Minecraft mod designed to allow you to apply tweaks to the game in ways to resemble the older versions.
 Included are options that can change many elements of the game including but not limited to: lighting, game mechanics, hitbox shapes, block rendering, item rendering, sound cues, etc.
 
-Retro Tweaks does not replace resource packs. Textures, sounds, etc. are much more appropriate to be included in a resource pack like [Golden Days](https://github.com/PoeticRainbow/golden-days) rather than in a mod.
+Retro Tweaks does not replace resource packs or data packs. Textures, sounds, loot tables, etc. are much more appropriate to be included in a resource pack like [Golden Days](https://github.com/PoeticRainbow/golden-days) or a data pack rather than in a mod.
 
 ## Tweaks Included
 ### Rendering
@@ -45,7 +45,7 @@ Retro Tweaks does not replace resource packs. Textures, sounds, etc. are much mo
 | **Instant Consumption**   | When enabled, all consumable items will be consumed instantly, and not produce particles or sound.                                                  |
 | **Remove Hunger**         | When enabled, the game will not use hunger for healing, and eating food will heal you.                                                              |
 | **Sprinting Style**       | Modern: The vanilla sprinting system. Infinite: You can sprint forever, regardless of hunger. Disabled: You can never sprint, regardless of hunger. |
-### Miscellaneous
+### e
 | Tweak Name        | Description                                                                                     |
 |-------------------|-------------------------------------------------------------------------------------------------|
 | **Old Footsteps** | When enabled, all mobs will make player-like footsteps based on the block they are standing on. |
