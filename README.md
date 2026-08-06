@@ -45,7 +45,7 @@ Retro Tweaks does not replace resource packs or data packs. Textures, sounds, lo
 | **Instant Consumption**   | When enabled, all consumable items will be consumed instantly, and not produce particles or sound.                                                  |
 | **Remove Hunger**         | When enabled, the game will not use hunger for healing, and eating food will heal you.                                                              |
 | **Sprinting Style**       | Modern: The vanilla sprinting system. Infinite: You can sprint forever, regardless of hunger. Disabled: You can never sprint, regardless of hunger. |
-### e
+### Miscellaneous
 | Tweak Name        | Description                                                                                     |
 |-------------------|-------------------------------------------------------------------------------------------------|
 | **Old Footsteps** | When enabled, all mobs will make player-like footsteps based on the block they are standing on. |
