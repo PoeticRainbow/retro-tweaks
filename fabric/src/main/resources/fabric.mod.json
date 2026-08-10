@@ -1,18 +1,15 @@
 {
   "schemaVersion": 1,
-  "id": "retrotweaks",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "RetroTweaks",
-  "description": "Implements visual tweaks to send your Minecraft back in time!",
-  "authors": [
-    "PoeticRainbow",
-    "GameMasterPDX"
-  ],
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": ["PoeticRainbow", "GameMasterPDX"],
   "contact": {
     "homepage": ""
   },
-  "license": "GPL-3.0",
-  "icon": "assets/retrotweaks/icon.png",
+  "license": "${license}",
+  "icon": "assets/${mod_id}/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -27,12 +24,10 @@
     "retrotweaks-fabric-client-tweak.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.19.0",
-    "minecraft": "~26.1.2",
-    "java": ">=25",
-    "architectury": ">=20.0.0"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "minecraft": "~${minecraft_version}",
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "java": ">=${java_version}",
+    "architectury": ">=${architectury_api_version}"
   }
 }

@@ -1,33 +1,31 @@
 modLoader = "javafml"
 loaderVersion = "[2,)"
 #issueTrackerURL = ""
-license = "GNU GPL 3.0"
+license = "${license}"
 
 [[mods]]
-modId = "retrotweaks"
+modId = "${mod_id}"
 version = "${version}"
-displayName = "RetroTweaks"
+displayName = "${mod_id}"
 authors = ["PoeticRainbow", "GameMasterPDX"]
-description = '''
-Implements visual tweaks to send your Minecraft back in time!
-'''
-logoFile = "assets/retrotweaks/icon.png"
+description = '''${description}'''
+logoFile = "assets/${mod_id}/icon.png"
 
-[[dependencies.retrotweaks]]
+[[dependencies.${mod_id}]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21,)"
+versionRange = "[${neoforge_version},)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.retrotweaks]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 type = "required"
-versionRange = "[26.1.2,)"
+versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.retrotweaks]]
+[[dependencies.${mod_id}]]
 modId = "architectury"
 type = "required"
 versionRange = "[20.0.0,)"
