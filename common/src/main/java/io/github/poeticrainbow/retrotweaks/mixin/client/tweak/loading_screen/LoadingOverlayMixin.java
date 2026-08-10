@@ -36,7 +36,7 @@ public abstract class LoadingOverlayMixin {
 
     /**
      * @author GMPDX
-     * @reason Beta Mojang Logo
+     * Beta Mojang Logo
      */
     @WrapMethod(method = "extractRenderState")
     public void retrotweaks$render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, Operation<Void> original) {

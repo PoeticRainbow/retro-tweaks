@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class PanoramaRendererMixin {
     /**
      * @author PoeticRainbow
-     * @reason replace the panorama overlay with the old gradient one
+     * replace the panorama overlay with the old gradient one
      */
     @WrapOperation(method = "extractRenderState", at = @At(target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blit(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIFFIIIIII)V", value = "INVOKE"))
     private void retrotweaks$replace_panorama_overlay(GuiGraphicsExtractor graphics, RenderPipeline renderPipeline, Identifier texture, int x, int y, float u, float v, int width, int height, int srcWidth, int srcHeight, int textureWidth, int textureHeight, Operation<Void> original) {
