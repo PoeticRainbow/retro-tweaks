@@ -2,8 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - master
-      - dev
+      - version/26.1.2
 jobs:
   build:
     runs-on: ubuntu-latest
