@@ -4,13 +4,23 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
 }
 
+// set to false when making official release
+def forceCommitHash = true
+def isInGHA = System.getenv("GITHUB_ACTIONS") == "true"
+
 architectury {
     minecraft = project.minecraft_version
 }
 
 allprojects {
     group = rootProject.maven_group
-    version = "$rootProject.mod_version+$rootProject.minecraft_version"
+
+    if (isInGHA || forceCommitHash) {
+        def gitCommitHash = 'git rev-parse --verify --short HEAD'.execute().text.trim()
+        version = "$rootProject.mod_version+$rootProject.minecraft_version-$gitCommitHash"
+    } else {
+        version = "$rootProject.mod_version+$rootProject.minecraft_version"
+    }
 }
 
 subprojects {
