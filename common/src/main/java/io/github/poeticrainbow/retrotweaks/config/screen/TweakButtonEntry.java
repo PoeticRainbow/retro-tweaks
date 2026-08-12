@@ -58,7 +58,7 @@ public class TweakButtonEntry extends ContainerObjectSelectionList.Entry<@NotNul
         if (this.tweak instanceof BooleanTweak booleanTweak) booleanTweak.toggle();
         if (this.tweak instanceof EnumTweak<?> enumTweak) enumTweak.next();
         updateMessage();
-        Minecraft.getInstance().levelRenderer.resetLevelRenderData();
+        Minecraft.getInstance().levelExtractor.allChanged();
     }
 
     @Override
