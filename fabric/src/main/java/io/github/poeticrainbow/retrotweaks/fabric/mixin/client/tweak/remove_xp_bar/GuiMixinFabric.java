@@ -1,12 +1,12 @@
 package io.github.poeticrainbow.retrotweaks.fabric.mixin.client.tweak.remove_xp_bar;
 
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
-import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.Hud;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-@Mixin(Gui.class)
+@Mixin(Hud.class)
 public class GuiMixinFabric {
     @ModifyVariable(method = "extractPlayerHealth", at = @At(value = "STORE", target = "Lnet/minecraft/client/gui/Gui;extractPlayerHealth(Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V"), name = "yLineBase")
     private int retrotweaks$render_hearts(int yLineBase) {
