@@ -5,10 +5,10 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.contextualbar.ContextualBarRenderer;
+import net.minecraft.client.gui.contextualbar.ContextualBar;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(ContextualBarRenderer.class)
+@Mixin(ContextualBar.class)
 public interface ContextualBarRendererMixin {
     @WrapMethod(method = "extractExperienceLevel")
     private static void renderExperienceLevel(GuiGraphicsExtractor graphics, Font font, int experienceLevel, Operation<Void> original) {

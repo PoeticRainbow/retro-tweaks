@@ -5,10 +5,10 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.contextualbar.ExperienceBarRenderer;
+import net.minecraft.client.gui.contextualbar.ExperienceBar;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(ExperienceBarRenderer.class)
+@Mixin(ExperienceBar.class)
 public class ExperienceBarRendererMixin {
     @WrapMethod(method = "extractBackground")
     public void retrotweaks$render_background(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker, Operation<Void> original) {
