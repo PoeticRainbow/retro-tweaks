@@ -5,9 +5,10 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.Hud;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(Gui.class)
+@Mixin(Hud.class)
 public class GuiMixinNeoforge {
     @WrapMethod(method = "extractSelectedItemName(Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V")
     private void renderOverlayMessage(GuiGraphicsExtractor graphics, Operation<Void> original) {
