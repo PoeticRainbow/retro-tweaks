@@ -5,8 +5,6 @@ import io.github.poeticrainbow.retrotweaks.RetroTweaks;
 import io.github.poeticrainbow.retrotweaks.tweak.types.BooleanTweak;
 import io.github.poeticrainbow.retrotweaks.tweak.types.EnumTweak;
 import io.github.poeticrainbow.retrotweaks.tweak.types.Tweak;
-import io.github.poeticrainbow.retrotweaks.util.ColorHelper;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
@@ -17,6 +15,7 @@ import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
@@ -59,7 +58,7 @@ public class TweakButtonEntry extends ContainerObjectSelectionList.Entry<@NotNul
         if (this.tweak instanceof BooleanTweak booleanTweak) booleanTweak.toggle();
         if (this.tweak instanceof EnumTweak<?> enumTweak) enumTweak.next();
         updateMessage();
-        Minecraft.getInstance().levelRenderer.allChanged();
+        Minecraft.getInstance().levelRenderer.resetLevelRenderData();
     }
 
     @Override
@@ -87,7 +86,7 @@ public class TweakButtonEntry extends ContainerObjectSelectionList.Entry<@NotNul
             message = Component.translatable("retrotweaks.enum." + className + "." + valueName);
         }
         if (value instanceof Boolean bool) {
-            message.withColor(ColorHelper.getColor(bool ? ChatFormatting.GREEN : ChatFormatting.RED));
+            message.withColor(bool ? TextColor.GREEN : TextColor.RED);
         }
         return message;
     }

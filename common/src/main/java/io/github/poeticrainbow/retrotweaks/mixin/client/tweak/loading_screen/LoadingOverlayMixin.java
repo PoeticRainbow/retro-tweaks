@@ -79,7 +79,7 @@ public abstract class LoadingOverlayMixin {
             if (this.fadeOutStart != -1L) {
                 float fadeOutPercentage = (float) (now - this.fadeOutStart) / 1000.0F;
                 if (fadeOutPercentage >= 2.0F) {
-                    Minecraft.getInstance().setOverlay(null);
+                    Minecraft.getInstance().gui.setOverlay(null);
                 }
             }
         } else {

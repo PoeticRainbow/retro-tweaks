@@ -17,7 +17,7 @@ public abstract class ChatListenerMixin {
     @WrapMethod(method = "handleOverlay")
     public void retrotweaks$move_overlay_messages_to_chat(Component message, Operation<Void> original) {
         if (Tweaks.MOVE_OVERLAY_MESSAGES.get()){
-            this.minecraft.gui.getChat().addClientSystemMessage(message);
+            this.minecraft.gui.hud.getChat().addClientSystemMessage(message);
             this.minecraft.getNarrator().saySystemChatQueued(message);
         } else {
             original.call(message);
