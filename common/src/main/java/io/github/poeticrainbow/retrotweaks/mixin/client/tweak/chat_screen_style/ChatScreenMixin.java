@@ -33,7 +33,7 @@ public abstract class ChatScreenMixin extends Screen {
     public void retrotweaks$render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, Operation<Void> original) {
         if (Tweaks.CHAT_SCREEN_STYLE.get().isEnabled()) {
             graphics.fill(2, this.height - 14, this.width - 2, this.height - 2, this.minecraft.options.getBackgroundColor(Integer.MIN_VALUE));
-            this.minecraft.gui.getChat().extractRenderState(graphics, this.font, this.minecraft.gui.getGuiTicks(), mouseX, mouseY, displayMode, insertionClickMode());
+            this.minecraft.gui.hud.getChat().extractRenderState(graphics, this.font, this.minecraft.gui.hud.getGuiTicks(), mouseX, mouseY, displayMode, insertionClickMode());
             graphics.text(this.font, "> " + this.input.getValue() + (this.retrotweaks$updateCounter / 6 % 2 == 0 ? "_" : ""), 4, this.height - 12, 0xFFE0E0E0);
 
             if (Tweaks.CHAT_SCREEN_STYLE.get().showSuggestions()) {
