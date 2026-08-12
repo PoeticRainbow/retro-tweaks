@@ -1,7 +1,6 @@
 package io.github.poeticrainbow.retrotweaks.neoforge.mixin.client.tweak.remove_xp_bar;
 
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.Hud;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
