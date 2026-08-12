@@ -85,11 +85,11 @@ public abstract class TitleScreenMixin extends Screen {
 
             this.addRenderableWidget(
                     Button.builder(Component.translatable("retrotweaks.menu.mods"), button -> {
-                                mc.setScreen(new PackSelectionScreen(
+                                mc.setScreenAndShow(new PackSelectionScreen(
                                         mc.getResourcePackRepository(),
                                         repository -> {
                                             mc.options.updateResourcePacks(repository);
-                                            mc.setScreen(this);
+                                            mc.setScreenAndShow(this);
                                         },
                                         mc.getResourcePackDirectory(),
                                         Component.translatable("resourcePack.title")

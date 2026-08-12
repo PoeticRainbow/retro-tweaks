@@ -47,7 +47,7 @@ public class RetroTweaksClient {
     }
 
     public static void openConfigScreen() {
-        Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreen(new ConfigScreen(Minecraft.getInstance().screen)));
+        Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreenAndShow(new ConfigScreen(Minecraft.getInstance().gui.screen())));
     }
 
     @SuppressWarnings("ConstantValue")
