@@ -1,4 +1,4 @@
-package io.github.poeticrainbow.retrotweaks.mixin.client.tweak.move_system_messages;
+package io.github.poeticrainbow.retrotweaks.mixin.client.tweak.move_overlay_messages;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

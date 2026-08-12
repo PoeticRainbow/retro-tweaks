@@ -25,7 +25,7 @@
     "hide_xp_bar.ContextualBarRendererMixin",
     "hide_xp_bar.ExperienceBarRendererMixin",
     "loading_screen.LoadingOverlayMixin",
-    "move_system_messages.ChatListenerMixin",
+    "move_overlay_messages.ChatListenerMixin",
     "old_bossbar.BossEventMixin",
     "old_bossbar.BossHealthOverlayMixin",
     "old_button_colors.AbstractButtonMixin",
