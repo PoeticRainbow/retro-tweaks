@@ -3,9 +3,19 @@ plugins {
     id 'maven-publish'
 }
 
+// set to false when making official release
+def forceCommitHash = true
+def isInGHA = System.getenv("GITHUB_ACTIONS") == "true"
+
 base {
     archivesName = "${mod_id}-${project.name}"
-    version = "${version}+${minecraft_version}"
+
+    if (isInGHA || forceCommitHash) {
+        def gitCommitHash = 'git rev-parse --verify --short HEAD'.execute().text.trim()
+        version = "${version}+${minecraft_version}-${gitCommitHash}"
+    } else {
+        version = "${version}+${minecraft_version}"
+    }
 }
 
 java {
