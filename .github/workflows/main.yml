@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - version/26.1.2
+      - version/26.2
 jobs:
   build:
     runs-on: ubuntu-latest
