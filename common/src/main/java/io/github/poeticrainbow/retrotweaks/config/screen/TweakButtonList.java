@@ -10,7 +10,7 @@ public class TweakButtonList extends ContainerObjectSelectionList<TweakButtonLis
         super(minecraft, width, height, y, 0);
 
         Tweaks.CATEGORIES.forEach((category, tweaks) -> {
-            addEntry(new TweakCategoryHeader(category), 12);
+            addEntry(new TweakCategoryHeader(category), 16);
             for (Tweak<?> tweak : tweaks) {
                 addEntry(new TweakButtonEntry(tweak), 22);
             }
