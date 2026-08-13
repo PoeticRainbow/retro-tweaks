@@ -8,7 +8,6 @@ import io.github.poeticrainbow.retrotweaks.tweak.types.Tweak;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
@@ -21,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class TweakButtonEntry extends ContainerObjectSelectionList.Entry<@NotNull TweakButtonEntry> implements Button.OnPress {
+public class TweakButtonEntry extends TweakButtonList.AbstractEntry implements Button.OnPress {
     public final Tweak<?> tweak;
 
     public static final int BUTTON_WIDTH = 80;
@@ -96,13 +95,13 @@ public class TweakButtonEntry extends ContainerObjectSelectionList.Entry<@NotNul
     }
 
     @Override
-    public void extractContent(@NotNull GuiGraphicsExtractor graphics, int i, int j, boolean bl, float f) {
+    public void extractContent(@NotNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
         // i and j are mouse position
         var textRenderer = graphics.textRenderer();
         var font = Minecraft.getInstance().font;
         textRenderer.accept(getX() + 2, getY() + (getHeight() - font.lineHeight) / 2, label);
         child.setPosition(getX() + getWidth() - BUTTON_WIDTH, getY() + 1);
         child.setWidth(BUTTON_WIDTH);
-        child.extractRenderState(graphics, i, j, f);
+        child.extractRenderState(graphics, mouseX, mouseY, a);
     }
 }
