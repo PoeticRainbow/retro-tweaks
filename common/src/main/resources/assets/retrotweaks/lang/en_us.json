@@ -1,6 +1,11 @@
 {
   "gui.retrotweaks.config": "RetroTweaks Config",
   "retrotweaks.bosshealth.name": "Boss health",
+  "retrotweaks.category.rendering": "Rendering",
+  "retrotweaks.category.screens": "Screens",
+  "retrotweaks.category.gui": "GUI",
+  "retrotweaks.category.gameplay": "Gameplay",
+  "retrotweaks.category.miscellaneous": "Miscellaneous",
   "retrotweaks.death.score": "Score: &e0",
   "retrotweaks.enum.chat.beta": "Beta",
   "retrotweaks.enum.chat.beta_plus": "Beta+",
