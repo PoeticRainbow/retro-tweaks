@@ -8,7 +8,7 @@
     "beta_main_menu.LogoRendererMixin",
     "beta_main_menu.TitleScreenMixin",
     "beta_pause_menu.PauseScreenMixin",
-    "big_stars.SkyRendererMixin",
+    "star_style.SkyRendererMixin",
     "chat_screen_style.ChatComponent$1Mixin",
     "chat_screen_style.ChatComponentMixin",
     "chat_screen_style.ChatScreenMixin",

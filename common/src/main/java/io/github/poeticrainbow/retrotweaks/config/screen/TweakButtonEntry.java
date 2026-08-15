@@ -2,6 +2,7 @@ package io.github.poeticrainbow.retrotweaks.config.screen;
 
 import dev.architectury.utils.Env;
 import io.github.poeticrainbow.retrotweaks.RetroTweaks;
+import io.github.poeticrainbow.retrotweaks.mixin.client.required.LevelRendererAccessor;
 import io.github.poeticrainbow.retrotweaks.tweak.types.BooleanTweak;
 import io.github.poeticrainbow.retrotweaks.tweak.types.EnumTweak;
 import io.github.poeticrainbow.retrotweaks.tweak.types.Tweak;
@@ -14,6 +15,7 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.renderer.SkyRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.StringRepresentable;
@@ -59,6 +61,9 @@ public class TweakButtonEntry extends TweakButtonList.AbstractEntry implements B
         if (this.tweak instanceof EnumTweak<?> enumTweak) enumTweak.next();
         updateMessage();
         Minecraft.getInstance().levelRenderer.allChanged();
+        ((LevelRendererAccessor) Minecraft.getInstance().levelRenderer).retrotweaks$setSkyRenderer(
+            new SkyRenderer(Minecraft.getInstance().getTextureManager(), Minecraft.getInstance().getAtlasManager())
+        );
     }
 
     @Override

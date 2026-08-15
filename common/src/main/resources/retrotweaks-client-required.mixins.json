@@ -6,6 +6,7 @@
   "client": [
     "MinecraftMixin",
     "ScreenAccessor",
+    "LevelRendererAccessor",
     "TitleScreenMixin"
   ],
   "injectors": {
