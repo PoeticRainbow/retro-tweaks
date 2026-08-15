@@ -58,6 +58,7 @@ public class TweakButtonEntry extends TweakButtonList.AbstractEntry implements B
         if (this.tweak instanceof EnumTweak<?> enumTweak) enumTweak.next();
         updateMessage();
         Minecraft.getInstance().levelExtractor.allChanged();
+        Minecraft.getInstance().levelExtractor.shouldResetSkyRenderer = true;
     }
 
     @Override
