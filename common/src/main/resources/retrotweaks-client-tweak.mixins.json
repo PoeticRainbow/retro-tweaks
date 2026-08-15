@@ -8,7 +8,8 @@
     "beta_main_menu.LogoRendererMixin",
     "beta_main_menu.TitleScreenMixin",
     "beta_pause_menu.PauseScreenMixin",
-    "star_style.SkyRendererMixin",
+    "blue_void.LevelRendererMixin",
+    "blue_void.SkyRendererMixin",
     "chat_screen_style.ChatComponent$1Mixin",
     "chat_screen_style.ChatComponentMixin",
     "chat_screen_style.ChatScreenMixin",
@@ -37,6 +38,7 @@
     "old_hitbox_shapes.LevelRendererMixin",
     "old_panorama_blur.PanoramaRendererMixin",
     "old_world_loading_screen.LevelLoadingScreenMixin",
+    "star_style.SkyRendererMixin",
     "top_left_version_text.GuiMixin"
   ],
   "injectors": {
