@@ -26,4 +26,12 @@ public enum Versions implements StringRepresentable {
     public @NotNull String getSerializedName() {
         return this.toString();
     }
+
+    public boolean isOlderThan(Versions version) {
+        return this.ordinal() < version.ordinal();
+    }
+
+    public boolean isOlderThanOrEqualTo(Versions version) {
+        return this.ordinal() <= version.ordinal();
+    }
 }

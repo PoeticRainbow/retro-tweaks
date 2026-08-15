@@ -14,6 +14,7 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.renderer.SkyRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.StringRepresentable;
@@ -59,6 +60,7 @@ public class TweakButtonEntry extends TweakButtonList.AbstractEntry implements B
         if (this.tweak instanceof EnumTweak<?> enumTweak) enumTweak.next();
         updateMessage();
         Minecraft.getInstance().levelRenderer.allChanged();
+        Minecraft.getInstance().levelRenderer.skyRenderer = new SkyRenderer(Minecraft.getInstance().getTextureManager(), Minecraft.getInstance().getAtlasManager());
     }
 
     @Override
