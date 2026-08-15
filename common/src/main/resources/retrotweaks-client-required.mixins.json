@@ -4,9 +4,10 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+    "LevelRendererAccessor",
     "MinecraftMixin",
     "ScreenAccessor",
-    "LevelRendererAccessor",
+    "SkyRendererAccessor",
     "TitleScreenMixin"
   ],
   "injectors": {

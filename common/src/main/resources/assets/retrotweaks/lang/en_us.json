@@ -34,6 +34,8 @@
   "retrotweaks.tweak.beta_main_menu.tooltip": "When enabled, the main menu will be modified to look like the one that appears in beta versions.",
   "retrotweaks.tweak.beta_pause_menu": "Beta Pause Menu",
   "retrotweaks.tweak.beta_pause_menu.tooltip": "When enabled, the pause menu will be modified to look like the one that appears in beta versions.",
+  "retrotweaks.tweak.blue_void": "Blue Void",
+  "retrotweaks.tweak.blue_void.tooltip": "When enabled, the bottom half of the sky will be the old blue void.",
   "retrotweaks.tweak.chat_screen_style": "Chat Screen Style",
   "retrotweaks.tweak.chat_screen_style.tooltip": "When set to Beta, the chat screen will be rendered like the one in Beta. Beta+ will still allow command suggestions to show.",
   "retrotweaks.tweak.dark_ambient_occlusion": "Dark Ambient Occlusion",

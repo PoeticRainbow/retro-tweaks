@@ -30,6 +30,7 @@ public class Tweaks {
     public static final Tweak<Boolean> FULL_FACE_SHADING = register(TweakCategory.RENDERING, new BooleanTweak("full_face_shading", Env.CLIENT, true, false, RetroTweaks::isVanillaAo));
     public static final Tweak<Versions> STAR_STYLE = registerEnum(TweakCategory.RENDERING, new EnumTweak<>("star_style", Env.CLIENT, Versions.BETA, Versions.MODERN, Versions.MAIN_VERSIONS));
     public static final Tweak<Boolean> FLAT_ITEMS = register(TweakCategory.RENDERING, new BooleanTweak("flat_items", Env.CLIENT, true, false));
+    public static final Tweak<Boolean> BLUE_VOID = register(TweakCategory.RENDERING, new BooleanTweak("blue_void", Env.CLIENT, true, false));
     public static final Tweak<Boolean> DARK_WATER_LIGHTING = register(TweakCategory.RENDERING, new BooleanTweak("dark_water_lighting", Env.SERVER, true, false));
 
     // SCREENS
