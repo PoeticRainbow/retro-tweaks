@@ -10,11 +10,11 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(SkyRenderer.class)
 public class SkyRendererMixin {
     @WrapMethod(method = "shouldRenderDarkDisc")
-    private boolean retrotweaks$never_render_disc(float deltaPartialTick, ClientLevel level, Operation<Boolean> original) {
+    private boolean retrotweaks$never_render_disc(float f, ClientLevel clientLevel, Operation<Boolean> original) {
         if (Tweaks.BLUE_VOID.get()) {
             return false;
         } else {
-            return original.call(deltaPartialTick, level);
+            return original.call(f, clientLevel);
         }
     }
 }
