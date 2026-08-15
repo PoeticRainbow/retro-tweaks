@@ -2,6 +2,7 @@ package io.github.poeticrainbow.retrotweaks.config.screen;
 
 import dev.architectury.utils.Env;
 import io.github.poeticrainbow.retrotweaks.RetroTweaks;
+import io.github.poeticrainbow.retrotweaks.mixin.client.required.LevelExtractorAccessor;
 import io.github.poeticrainbow.retrotweaks.tweak.types.BooleanTweak;
 import io.github.poeticrainbow.retrotweaks.tweak.types.EnumTweak;
 import io.github.poeticrainbow.retrotweaks.tweak.types.Tweak;
@@ -58,7 +59,7 @@ public class TweakButtonEntry extends TweakButtonList.AbstractEntry implements B
         if (this.tweak instanceof EnumTweak<?> enumTweak) enumTweak.next();
         updateMessage();
         Minecraft.getInstance().levelExtractor.allChanged();
-        Minecraft.getInstance().levelExtractor.shouldResetSkyRenderer = true;
+        ((LevelExtractorAccessor) Minecraft.getInstance().levelExtractor).retrotweaks$setShouldResetSkyRenderer(true);
     }
 
     @Override
