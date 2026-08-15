@@ -59,8 +59,8 @@ public abstract class SkyRendererMixin {
 
     @WrapOperation(method = "extractRenderState", at = @At(target = "Lnet/minecraft/client/renderer/state/level/SkyRenderState;starBrightness:F", value = "FIELD", opcode = Opcodes.PUTFIELD))
     private static void retrotweaks$override_star_brightness(SkyRenderState instance, float value, Operation<Void> original, @Local(argsOnly = true, name = "partialTicks") float partialTicks, @Local(name = "attributeProbe") EnvironmentAttributeProbe attributeProbe) {
-        if (!Tweaks.STAR_STYLE.get().isOlderThan(Versions.MODERN)) {
-            instance.starBrightness = retrotweaks$beta_star_brightness(attributeProbe.getValue(EnvironmentAttributes.SUN_ANGLE, partialTicks) / 360F);
+        if (Tweaks.STAR_STYLE.get().isOlderThan(Versions.MODERN)) {
+            instance.starBrightness = retrotweaks$beta_star_brightness(attributeProbe.getValue(EnvironmentAttributes.SUN_ANGLE, partialTicks) / 360F) * instance.rainBrightness;
         } else {
             original.call(instance, value);
         }
