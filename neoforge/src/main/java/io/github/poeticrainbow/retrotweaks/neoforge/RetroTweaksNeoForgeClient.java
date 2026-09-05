@@ -4,6 +4,7 @@ import io.github.poeticrainbow.retrotweaks.ErrorCollector;
 import io.github.poeticrainbow.retrotweaks.RetroTweaks;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import io.github.poeticrainbow.retrotweaks.util.BlueVoidRenderer;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.neoforged.neoforge.client.config.NeoForgeClientConfig;
 import net.neoforged.neoforge.client.event.ClientResourceLoadFinishedEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
@@ -36,8 +37,9 @@ public class RetroTweaksNeoForgeClient {
     }
 
     public static void renderBlueVoidAfterSky(RenderLevelStageEvent.AfterSky event) {
-        if (Tweaks.BLUE_VOID.get()) {
-            BlueVoidRenderer.renderBlueVoid(event.getLevelRenderState().skyRenderState.skyColor);
+        var skyRenderState = event.getLevelRenderState().skyRenderState;
+        if (Tweaks.BLUE_VOID.get() && skyRenderState.skybox.equals(DimensionType.Skybox.OVERWORLD)) {
+            BlueVoidRenderer.renderBlueVoid(skyRenderState.skyColor);
         }
     }
 }
