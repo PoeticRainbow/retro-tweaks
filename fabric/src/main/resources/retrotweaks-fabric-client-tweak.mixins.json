@@ -5,6 +5,7 @@
   "minVersion": "0.8",
   "client": [
     "beta_main_menu.TitleScreenMixinFabric",
+    "blue_void.LevelRendererMixin",
     "remove_hunger.GuiMixinFabric",
     "remove_xp_bar.GuiMixinFabric"
   ],

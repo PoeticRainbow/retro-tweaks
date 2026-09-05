@@ -2,8 +2,11 @@ package io.github.poeticrainbow.retrotweaks.neoforge;
 
 import io.github.poeticrainbow.retrotweaks.ErrorCollector;
 import io.github.poeticrainbow.retrotweaks.RetroTweaks;
+import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
+import io.github.poeticrainbow.retrotweaks.util.BlueVoidRenderer;
 import net.neoforged.neoforge.client.config.NeoForgeClientConfig;
 import net.neoforged.neoforge.client.event.ClientResourceLoadFinishedEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.Optional;
@@ -18,6 +21,7 @@ public class RetroTweaksNeoForgeClient {
         });
 
         NeoForge.EVENT_BUS.addListener(RetroTweaksNeoForgeClient::onResourceReload);
+        NeoForge.EVENT_BUS.addListener(RetroTweaksNeoForgeClient::renderBlueVoidAfterSky);
     }
 
     static void onResourceReload(ClientResourceLoadFinishedEvent event) {
@@ -29,5 +33,11 @@ public class RetroTweaksNeoForgeClient {
     public static boolean isVanillaAo() {
         // return true when enhancedLighting is NOT enabled
         return !NeoForgeClientConfig.INSTANCE.enhancedLighting.getAsBoolean();
+    }
+
+    public static void renderBlueVoidAfterSky(RenderLevelStageEvent.AfterSky event) {
+        if (Tweaks.BLUE_VOID.get()) {
+            BlueVoidRenderer.renderBlueVoid(event.getLevelRenderState().skyRenderState.skyColor);
+        }
     }
 }
