@@ -35,7 +35,7 @@ public abstract class SkyRendererMixin {
     //@ModifyVariable(method = "buildStars", at = @At(value = "STORE"), name = "k")
     @ModifyVariable(method = "buildStars", at = @At(value = "STORE"), ordinal = 4)
     private static float retrotweaks$modify_star_size(float value) {
-        if (Tweaks.STAR_STYLE.get().ordinal() < Versions.RELEASE.ordinal()) {
+        if (Tweaks.STAR_STYLE.get().isOlderThan(Versions.RELEASE)) {
             // modern 0.15F + randomSource.nextFloat() * 0.1F
             // [0.15, 0.25]
             // beta 0.25f + source.nextFloat() * 0.25f
@@ -50,7 +50,7 @@ public abstract class SkyRendererMixin {
 
     @WrapOperation(method = "renderStars", at = @At(target = "Lnet/minecraft/client/renderer/DynamicUniforms;writeTransform(Lorg/joml/Matrix4fc;Lorg/joml/Vector4fc;Lorg/joml/Vector3fc;Lorg/joml/Matrix4fc;)Lcom/mojang/blaze3d/buffers/GpuBufferSlice;", value = "INVOKE"))
     private static GpuBufferSlice retrotweaks$opaque_stars(DynamicUniforms instance, Matrix4fc modelView, Vector4fc colorModulator, Vector3fc modelOffset, Matrix4fc textureMatrix, Operation<GpuBufferSlice> original) {
-        if (Tweaks.STAR_STYLE.get().isOlderThanOrEqualTo(Versions.ALPHA)) {
+        if (Tweaks.STAR_STYLE.get().isOlderThan(Versions.BETA)) {
             colorModulator = new Vector4f(colorModulator.x(), colorModulator.y(), colorModulator.z(), 1.0F);
         }
 
@@ -58,9 +58,9 @@ public abstract class SkyRendererMixin {
     }
 
     @WrapOperation(method = "extractRenderState", at = @At(target = "Lnet/minecraft/client/renderer/state/SkyRenderState;starBrightness:F", value = "FIELD", opcode = Opcodes.PUTFIELD))
-    private static void retrotweaks$override_star_brightness(SkyRenderState instance, float value, Operation<Void> original, @Local(argsOnly = true, name = "f") float f, @Local(name = "environmentAttributeProbe") EnvironmentAttributeProbe environmentAttributeProbe) {
+    private static void retrotweaks$override_star_brightness(SkyRenderState instance, float value, Operation<Void> original, @Local EnvironmentAttributeProbe environmentAttributeProbe) {
         if (Tweaks.STAR_STYLE.get().isOlderThan(Versions.MODERN)) {
-            instance.starBrightness = retrotweaks$beta_star_brightness(environmentAttributeProbe.getValue(EnvironmentAttributes.SUN_ANGLE, f) / 360F) * instance.rainBrightness;
+            instance.starBrightness = retrotweaks$beta_star_brightness(environmentAttributeProbe.getValue(EnvironmentAttributes.SUN_ANGLE, value) / 360F) * instance.rainBrightness;
         } else {
             original.call(instance, value);
         }
