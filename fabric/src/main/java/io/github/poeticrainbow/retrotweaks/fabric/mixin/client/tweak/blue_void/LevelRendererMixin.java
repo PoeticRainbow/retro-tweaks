@@ -1,4 +1,4 @@
-package io.github.poeticrainbow.retrotweaks.mixin.client.tweak.blue_void;
+package io.github.poeticrainbow.retrotweaks.fabric.mixin.client.tweak.blue_void;
 
 import com.mojang.blaze3d.buffers.GpuBufferSlice;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
