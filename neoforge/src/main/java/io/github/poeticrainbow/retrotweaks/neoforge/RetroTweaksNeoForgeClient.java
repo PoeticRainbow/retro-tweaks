@@ -2,24 +2,29 @@ package io.github.poeticrainbow.retrotweaks.neoforge;
 
 import io.github.poeticrainbow.retrotweaks.ErrorCollector;
 import io.github.poeticrainbow.retrotweaks.RetroTweaks;
+import io.github.poeticrainbow.retrotweaks.config.screen.ConfigScreen;
 import io.github.poeticrainbow.retrotweaks.tweak.Tweaks;
 import io.github.poeticrainbow.retrotweaks.util.BlueVoidRenderer;
 import net.minecraft.world.level.dimension.DimensionType;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.client.config.NeoForgeClientConfig;
 import net.neoforged.neoforge.client.event.ClientResourceLoadFinishedEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.Optional;
 
 public class RetroTweaksNeoForgeClient {
-    public static void init() {
+    public static void init(ModContainer container) {
         ErrorCollector.addErrorCheck(() -> {
             if (NeoForgeClientConfig.INSTANCE.enhancedLighting.getAsBoolean()) {
                 return Optional.of("NeoForge's enhancedLighting is enabled, breaking Per Face Lighting");
             }
             return Optional.empty();
         });
+
+        container.registerExtensionPoint(IConfigScreenFactory.class, (modContainer, parent) -> new ConfigScreen(parent));
 
         NeoForge.EVENT_BUS.addListener(RetroTweaksNeoForgeClient::onResourceReload);
         NeoForge.EVENT_BUS.addListener(RetroTweaksNeoForgeClient::renderBlueVoidAfterSky);
