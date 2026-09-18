@@ -5,6 +5,10 @@ plugins {
 
 repositories {
     maven { url = "https://maven.architectury.dev/" }
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
 }
 
 dependencies {
@@ -13,6 +17,7 @@ dependencies {
     implementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
     implementation("dev.architectury:architectury-fabric:${architectury_api_version}")
+    implementation("com.terraformersmc:modmenu:${mod_menu_version}")
 }
 
 loom {
