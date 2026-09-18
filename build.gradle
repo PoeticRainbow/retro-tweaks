@@ -47,6 +47,10 @@ subprojects {
             name "CaffeineMC"
             url "https://maven.caffeinemc.net/releases" // or /snapshots
         }
+        maven {
+            name = "Terraformers"
+            url = "https://maven.terraformersmc.com/"
+        }
     }
 
     dependencies {

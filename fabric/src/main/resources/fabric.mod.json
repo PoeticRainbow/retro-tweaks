@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "io.github.poeticrainbow.retrotweaks.fabric.RetroTweaksFabric"
+    ],
+    "modmenu": [
+      "io.github.poeticrainbow.retrotweaks.fabric.compat.RetroTweaksModMenu"
     ]
   },
   "mixins": [
